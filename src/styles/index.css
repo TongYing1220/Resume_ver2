@@ -1,0 +1,738 @@
+/* 全局样式 & CSS变量定义 */
+:root {
+    --color-primary: #B5173C;    /* 酒红色 - 主强调色 */
+    --color-secondary: #1C4273;  /* 深蓝色 - 主文字色 */
+    --color-bg: #D9EDE9;         /* 浅灰蓝 - 基础背景色 */
+    --color-accent: #97CED8;     /* 浅蓝 - 辅助装饰色 */
+    --color-card: white;         /* 卡片背景色 */
+    --shadow-light: 0 2px 10px rgba(151, 206, 216, 0.3);
+    --shadow-hover: 0 2px 8px rgba(151, 206, 216, 0.5);
+    --transition-base: all 0.3s ease;
+    /* 响应式断点 */
+    --mobile-break: 480px;
+    --tablet-break: 768px;
+    --desktop-break: 1024px;
+    /* 头部高度 */
+    --header-height: 200px;
+    /* 额外滚动留白 */
+    --scroll-padding: 20px;
+    --scroll-threshold: 300px;/* 滚动阈值 */
+}
+
+/* 暗黑模式变量 */
+.dark-mode {
+    --color-primary: #D64064;    /* 亮红色 - 主强调色 */
+    --color-secondary: #E0E9F2;  /* 浅灰色 - 主文字色 */
+    --color-bg: #121826;         /* 深灰蓝 - 基础背景色 */
+    --color-accent: #4A8FBF;     /* 深蓝 - 辅助装饰色 */
+    --color-card: #1E293B;       /* 卡片背景色 */
+    --shadow-light: 0 2px 10px rgba(74, 143, 191, 0.2);
+    --shadow-hover: 0 2px 8px rgba(74, 143, 191, 0.4);
+}
+
+/* 全局平滑滚动 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + var(--scroll-padding));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Source Han Serif SC", "Noto Serif SC", "Microsoft YaHei", "微软雅黑", SimHei, "黑体", Inter, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--color-secondary);
+    background: linear-gradient(135deg, var(--color-bg), #e8f4f5);
+    min-height: 100vh;
+    padding: 10px; /* 移动端body留白 */
+    transition: var(--transition-base);
+}
+
+/* 暗黑模式下的背景渐变 */
+.dark-mode body {
+    background: linear-gradient(135deg, var(--color-bg), #1E293B);
+}
+
+/* 容器：Flex布局基础 */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--color-card);
+    box-shadow: var(--shadow-light);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 20px); /* 容器铺满视口 */
+    transition: var(--transition-base);
+}
+
+/* 头部：Flex布局+吸顶 - 兼容旧样式，实际已替换为top-nav */
+header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 3px solid var(--color-primary);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: var(--color-card);
+    z-index: 99;
+    height: var(--header-height);
+    box-sizing: border-box;
+    transition: var(--transition-base);
+}
+
+.dark-mode header {
+    background: var(--color-card);
+}
+
+header h1 {
+    font-size: 36px;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+header p {
+    font-size: 18px;
+    color: var(--color-secondary);
+}
+
+/* 主要内容：Flex布局，自适应高度 */
+main {
+    flex: 1; /* 占满容器剩余高度 */
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* 各section间距 */
+}
+
+section {
+    width: 100%;
+    scroll-margin-top: calc(var(--header-height) + var(--scroll-padding));
+    margin-bottom: 40px;
+}
+
+section h2 {
+    font-size: 24px;
+    color: var(--color-secondary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-accent);
+    font-weight: 600;
+}
+
+section h3 {
+    font-size: 20px;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+section p {
+    margin-bottom: 10px;
+    color: var(--color-secondary);
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+/* 兴趣爱好样式 - 图片并排 */
+.hobby-list {
+    list-style-position: inside;
+    margin-left: 10px;
+}
+
+.hobby-list li {
+    margin-bottom: 15px;
+    color: var(--color-secondary);
+    font-size: 16px;
+}
+
+.hobby-img-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 5px 0;
+}
+
+.hobby-img {
+    flex: 1;
+    min-width: 120px;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid var(--color-accent);
+    transition: var(--transition-base);
+    object-fit: cover;
+}
+
+.hobby-img:hover {
+    transform: scale(1.02);
+}
+
+/* 技能区：响应式分栏 */
+.skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skill-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-accent);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-base);
+}
+
+.dark-mode .skill-card {
+    background: #273449;
+}
+
+.skill-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+/* 技能进度条样式 */
+.skill-progress {
+    width: 100%;
+    height: 24px;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.dark-mode .skill-progress {
+    background-color: #334155;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    border-radius: 12px;
+    transition: width 1s ease-in-out;
+}
+
+.skill-value {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+/* 项目/教育卡片样式 */
+.education-card, .project-card {
+    background: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--color-accent);
+    border-radius: 4px;
+    transition: var(--transition-base);
+}
+
+.dark-mode .education-card,
+.dark-mode .project-card {
+    background: #273449;
+}
+
+.education-card:hover, .project-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* 项目卡片懒加载样式 */
+.lazy-load {
+    opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.6s ease-out, 
+    transform 0.6s ease-out;
+  will-change: opacity, transform; 
+}
+
+.lazy-load.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 项目卡片懒加载动画增强 */
+.project-card-animate {
+  transition: 
+    opacity 0.8s ease-out, 
+    transform 0.8s ease-out,
+    box-shadow 0.3s ease; /* 增加阴影过渡 */
+}
+
+.project-card-animate.visible {
+  /* 显示时轻微放大，增强视觉效果 */
+  transform: translateY(0) scale(1.01);
+}
+
+/* 项目卡片基础样式优化（确保动画不被遮挡） */
+.project-card {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 25px; /* 增加卡片间距，避免动画重叠 */
+  border-left: 4px solid var(--color-accent);
+  border-radius: 4px;
+  transition: var(--transition-base);
+  position: relative; /* 确保z-index生效 */
+  z-index: 1;
+}
+
+.dark-mode .project-card {
+  background: #273449;
+}
+
+
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--color-accent);
+    color: var(--color-secondary);
+    font-size: 14px;
+    margin-top: auto;
+    transition: var(--transition-base);
+}
+
+/* 返回顶部按钮 - 始终显示*/
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  visibility: visible;
+  pointer-events: auto;
+  transition: var(--transition-base);
+  z-index: 999; /* 确保返回顶部按钮在最上层 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  /* 新增：防止按钮被遮挡 */
+  box-shadow: var(--shadow-light);
+}
+
+.back-to-top:hover {
+  opacity: 1;
+  background: #9c122e;
+  transform: scale(1.05);
+}
+
+/* 音乐按钮：复用 back-to-top 样式，调整位置（间距扩大到20px） */
+.music-btn {
+  bottom: calc(20px + 40px + 20px); /* 公式：返回顶部按钮bottom + 按钮高度 + 额外间距20px */
+  right: 20px; /* 强制和返回顶部按钮对齐 */
+  font-size: 18px;
+  z-index: 998; /* 音乐按钮层级略低，避免遮挡返回顶部按钮 */
+  width: 40px; /* 强制和返回顶部按钮同宽 */
+  height: 40px; /* 强制和返回顶部按钮同高 */
+}
+
+/* 平板端适配（768px以上） */
+@media (min-width: var(--tablet-break)) {
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    bottom: 25px;
+    right: 25px;
+  }
+  .music-btn {
+    bottom: calc(25px + 45px + 20px); /* 同步调整公式 */
+    right: 25px;
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* 桌面端适配（1024px以上） */
+@media (min-width: var(--desktop-break)) {
+  .back-to-top {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    bottom: 30px;
+    right: 30px;
+  }
+  .music-btn {
+    bottom: calc(30px + 50px + 20px); /* 同步调整公式 */
+    right: 30px;
+    font-size: 22px;
+    width: 50px;
+    height: 50px;
+  }
+}
+/* 新增：顶部导航样式 */
+.top-nav {
+    background: var(--color-card);
+    border-radius: 12px;
+    padding: 12px 20px;
+    box-shadow: var(--shadow-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    transition: var(--transition-base);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--color-bg);
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition-base);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-link:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+.nav-link.active {
+    background: var(--color-primary);
+    color: white;
+}
+
+.theme-toggle {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.theme-toggle:hover {
+    background: #9c122e;
+}
+
+/* 新增：手风琴作品区 */
+.accordion {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.accordion-item {
+    border: 1px solid var(--color-accent);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: var(--transition-base);
+}
+
+.accordion-header {
+    background: var(--color-bg);
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    transition: var(--transition-base);
+    color: var(--color-primary);
+}
+
+.accordion-header:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+.accordion-header::after {
+    content: "▼";
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    color: inherit;
+}
+
+.accordion-item.active .accordion-header::after {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 800px;
+}
+
+.accordion-inner {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artwork-img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 2px solid var(--color-accent);
+    object-fit: cover;
+}
+
+.artwork-desc {
+    width: 100%;
+    max-width: 600px;
+    text-align: left;
+    line-height: 1.8;
+}
+
+/* 媒体查询：平板端（768px以上） */
+@media (min-width: var(--tablet-break)) {
+    :root {
+        --header-height: 180px;
+    }
+    header {
+        height: var(--header-height);
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+    .nav-links {
+        max-height: 800px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        background: transparent;
+        box-shadow: none;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .nav-group-title, .nav-divider {
+        display: none;
+    }
+
+    .nav-links li a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .skills-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .skill-card {
+        width: calc(50% - 10px);
+    }
+
+    .hobby-img {
+        max-width: 220px;
+    }
+
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+
+    .dark-mode-float {
+        right: 30px;
+        bottom: 80px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    /* 新增：平板端导航适配 */
+    .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .artwork-img {
+        max-width: 100%;
+    }
+}
+
+/* 媒体查询：桌面端（1024px以上） */
+@media (min-width: var(--desktop-break)) {
+    .container {
+        padding: 30px;
+    }
+
+    :root {
+        --header-height: 160px;
+    }
+    header {
+        height: var(--header-height);
+    }
+
+    .skill-card {
+        width: calc(33.333% - 13.333px);
+    }
+
+    header h1 {
+        font-size: 40px;
+    }
+
+    .hobby-img {
+        max-width: 250px;
+    }
+
+    .back-to-top {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    .dark-mode-float {
+        right: 30px;
+        bottom: 90px;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+}
+
+/* 小屏移动端适配（480px以下） */
+@media (max-width: var(--mobile-break)) {
+    :root {
+        --header-height: 220px;
+    }
+    header {
+        height: var(--header-height);
+        padding: 15px 0;
+    }
+    header h1 {
+        font-size: 28px;
+    }
+    .container {
+        padding: 15px;
+    }
+    main {
+        gap: 20px;
+    }
+}
+
+/* 页面切换动画 */
+.page-transition {
+    position: relative;
+    overflow: hidden;
+}
+
+.page-enter {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-exit-active {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* 暗黑模式下的背景特效适配 */
+.dark-mode canvas {
+  opacity: 0.6; /* 暗黑模式降低透明度，避免太亮 */
+}
+
+/* 确保容器背景半透明，透出粒子特效 */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  /* 修改背景为半透明，保留卡片质感的同时透出特效 */
+  background: rgba(var(--color-card-rgb, 255, 255, 255), 0.9);
+  box-shadow: var(--shadow-light);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 20px);
+  transition: var(--transition-base);
+}
+
+/* 补充暗黑模式下的容器背景 */
+.dark-mode {
+  --color-card-rgb: 30, 41, 59; /* 对应 #1E293B 的 RGB 值 */
+}
+
+/* 项目经验手风琴文字排版优化 */
+.accordion-inner {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 文字左对齐 */
+}
+
+/* 手风琴标题栏图标样式 */
+.accordion-header {
+  justify-content: space-between; /* 标题和图标左右分开 */
+}

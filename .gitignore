@@ -1,0 +1,17 @@
+# 忽略依赖文件夹（必加）
+node_modules/
+# 忽略构建产物
+build/
+dist/
+# 忽略环境变量和日志
+.env
+npm-debug.log*
+# 忽略IDE配置（比如VS Code）
+.vscode/
+node_modules/
+build/
+dist/
+.env
+.DS_Store
+
+"homepage": "https://TongYing1220.github.io/Web-Team-Training-Program/resume-react_ver1"
