@@ -5,21 +5,21 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const artworksData = [
   {
     title: '水彩画',
-    image: '/images/D238ECF50E1C4631092C65B99BC420AA.jpg',
+    image: `${process.env.PUBLIC_URL}/images/D238ECF50E1C4631092C65B99BC420AA.jpg`,
     description: `
       饮月君
     `
   },
   {
     title: '电子绘画',
-    image: '/images/psc.webp',
+    image: `${process.env.PUBLIC_URL}/images/psc.webp`,
     description: `
       白厄
     `
   },
   {
     title: '电子绘画',
-    image: '/images/1b5b804e1132bc6ab1121a3ad52de4a7.png',
+    image: `${process.env.PUBLIC_URL}/images/1b5b804e1132bc6ab1121a3ad52de4a7.png`,
     description: `
       蹴鞠少女
     `

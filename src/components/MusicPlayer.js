@@ -38,7 +38,7 @@ export const MusicPlayer = () => {
       </button>
       <audio ref={audioRef} loop>
         {/* 音乐路径 */}
-        <source src="/music/M500002MaLeO2UvdqL.mp3" type="audio/mpeg" />
+        <source src={`${process.env.PUBLIC_URL}/music/M500002MaLeO2UvdqL.mp3`} type="audio/mpeg" />
         您的浏览器不支持音频播放，请升级浏览器。
       </audio>
     </>

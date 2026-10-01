@@ -31,8 +31,8 @@ const hobbyData = [
     name: '绘画',
     desc: '水彩，电子绘画',
     images: [
-      { src: '/images/D238ECF50E1C4631092C65B99BC420AA.jpg', alt: '水彩画' },
-      { src: '/images/psc.webp', alt: '电子绘画' },
+      { src: `${process.env.PUBLIC_URL}/images/D238ECF50E1C4631092C65B99BC420AA.jpg`, alt: '水彩画' },
+      { src: `${process.env.PUBLIC_URL}/images/psc.webp`, alt: '电子绘画' },
     ],
   },
   { name: '书法', desc: '软笔，硬笔' },
