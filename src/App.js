@@ -18,7 +18,7 @@ function App() {
     <ThemeProvider>
       {/* 背景特效：放在最外层，全局生效 */}
       <BackgroundEffect />
-      <Router basename="/Resume_ver2">
+      <Router>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
